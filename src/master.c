@@ -29,6 +29,8 @@ void *master_thread(void *p_data) {
     fd_set readset;
     fd_set writeset;
     struct timeval timeout;
+    char pts_name[50];
+    int len;
 
     fdm = posix_openpt(O_RDWR);
     ANSI_EXIT_IF_TRUE(fdm < 0, "Cannot create pseudo-terminal master\n");
@@ -39,7 +41,9 @@ void *master_thread(void *p_data) {
     rc = unlockpt(fdm);
     ANSI_EXIT_IF_TRUE(rc != 0, "Cannot unlockpt (unlock slave side)\n");
 
-    printf("Pseudo terminal file: %s\n", ptsname(fdm));
+    bzero(pts_name, sizeof(pts_name));
+    len = ptsname_r(fdm, pts_name, sizeof(pts_name));
+    printf("Pseudo terminal file: %s\n", pts_name);
 
     f_quit = p_data;
     timeout.tv_sec = 0;
