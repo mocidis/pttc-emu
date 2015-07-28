@@ -1,4 +1,5 @@
 # pttc-emu
+-----------------------------
 pttc-emu giả lập thiết bị ptt card sử dung pseudo-terminal
 
 * Cách build:
@@ -25,7 +26,7 @@ Pin 3 -> TX
 
 Pin 5 -> RX
 
-#GIAO THỨC
+GIAO THỨC
 -----------------------------
 Khi khoi dong xong      : "ready" is sent to PC via UART 
 
