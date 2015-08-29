@@ -42,8 +42,8 @@ void *master_thread(void *p_data) {
     ANSI_EXIT_IF_TRUE(rc != 0, "Cannot unlockpt (unlock slave side)\n");
 
     bzero(pts_name, sizeof(pts_name));
-    len = ptsname_r(fdm, pts_name, sizeof(pts_name));
-    printf("Pseudo terminal file: %s\n", pts_name);
+    //len = ptsname_r(fdm, pts_name, sizeof(pts_name));
+    printf("Pseudo terminal file: %s\n", ptsname(fdm));
 
     f_quit = p_data;
     timeout.tv_sec = 0;
